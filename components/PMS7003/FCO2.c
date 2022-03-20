@@ -32,16 +32,7 @@ void PMS7003_Read_Task(void* arg);
 
 
 void PMS7003_Init(void)
-{
-     //配置GPIO
-    gpio_config_t io_conf;
-    io_conf.intr_type = GPIO_INTR_DISABLE;
-    io_conf.pin_bit_mask =  1ULL << UART1_RXD;
-    io_conf.mode = GPIO_MODE_INPUT;
-    io_conf.pull_down_en = 0;
-    io_conf.pull_up_en = 0;
-  //  gpio_config(&io_conf);
-    
+{     
     
     uart_config_t uart_config = {
         .baud_rate = 9600,
@@ -74,7 +65,7 @@ static uint8_t	Check_PMSensor_DataValid(uint8_t* PM_Sensor_RxBuffer)
 	uint8_t 	i;
 	uint8_t     Result = 0;
 
-    if ((PM_Sensor_RxBuffer[0] == 0x16)
+    if ((PM_Sensor_RxBuffer[0] == 0x16))
     {
         Buffer_Len = (uint16_t)((PM_Sensor_RxBuffer[1]));// << 8) | PM_Sensor_RxBuffer[3]);
 
@@ -117,7 +108,7 @@ void PMS7003_Read_Task(void* arg)
     {
         int len1 = uart_read_bytes(UART_NUM_2, data_u1, BUF_SIZE, 100 / portTICK_RATE_MS);
        // if(len1!=0)  //读取到传感器数据
-        if(len>=56)
+        if(len1>=56)
         {
             len1=0;
             if(Check_PMSensor_DataValid(data_u1)==1)//数据校验成功
