@@ -191,6 +191,7 @@ void create_mqtt_json(creat_json *pCreat_json)
 		ESP_LOGE("SHT30", "SHT31_ReadTempHum : failed");
 	}
     cJSON_AddItemToObject(next, "LightLux", cJSON_CreateNumber(0));
+    cJSON_AddItemToObject(next, "SubNum", cJSON_CreateNumber(PM10-PM2_5));
     cJSON_AddItemToObject(next, "PM25", cJSON_CreateNumber(PM2_5));
     cJSON_AddItemToObject(next, "PM10", cJSON_CreateNumber(PM10));
     ESP_LOGI("PMS7003", "PM2_5=%d,PM10=%d", PM2_5,PM10);
