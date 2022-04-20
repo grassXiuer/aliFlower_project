@@ -119,7 +119,8 @@ static void MqttSend_Task(void* arg)
         xEventGroupWaitBits(s_wifi_event_group, CONNECTED_BIT , false, true, portMAX_DELAY); 
         xEventGroupWaitBits(mqtt_event_group, MQTT_CONNECTED_BIT , false, true, portMAX_DELAY); 
         Mqtt_Send_Msg(Topic_Post);
-        vTaskDelay(10000 / portTICK_RATE_MS);
+        //vTaskDelay(10000 / portTICK_RATE_MS); //10s
+         vTaskDelay(10000 / portTICK_RATE_MS); //3s send data to wifi
     }   
 }
 
