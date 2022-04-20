@@ -107,21 +107,22 @@ void PMS7003_Read_Task(void* arg)
     while(1)
     {
         int len1 = uart_read_bytes(UART_NUM_2, data_u1, BUF_SIZE, 100 / portTICK_RATE_MS);
-       // if(len1!=0)  //读取到传感器数据
-        if(len1>=56)
+        if(len1!=0)  //读取到传感器数据
+      //  if(len1>=56)
         {
             len1=0;
             if(Check_PMSensor_DataValid(data_u1)==1)//数据校验成功
             {
                // PM2_5  = 0;
                // PM10   = 0;
-                uiTemp=(uint32_t)(data_u1[11] << 24);
-                uiTemp = uiTemp|(uint32_t)(data_u1[12] << 16);
-                PM2_5  = uiTemp | (uint32_t)((data_u1[13]<<8) | data_u1[14]);
+               // uiTemp=(uint32_t)(data_u1[11] << 24);
+               // uiTemp = uiTemp|(uint32_t)(data_u1[12] << 16);
+               // PM2_5  = uiTemp | (uint32_t)((data_u1[13]<<8) | data_u1[14]);
+		PM2_5  =  (uint32_t)((data_u1[9]<<8) | data_u1[10]);
 
-                uiTemp = (uint32_t)(data_u1[15] << 24);
-                uiTemp = uiTemp | (uint32_t)(data_u1[16] << 16);
-                PM10 = uiTemp | (uint32_t)((data_u1[17] << 8) | data_u1[18]);
+               // uiTemp = (uint32_t)(data_u1[15] << 24);
+               // uiTemp = uiTemp | (uint32_t)(data_u1[16] << 16);
+                PM10 =  (uint32_t)((data_u1[11] << 8) | data_u1[12]);
                
                 //ESP_LOGI(TAG, "PM2_5=%d,PM10=%d", PM2_5,PM10);
                 if(PM2_5<=100)//优：0~100绿色
