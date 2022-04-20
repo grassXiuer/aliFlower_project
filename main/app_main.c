@@ -287,12 +287,12 @@ void oled_main_Task()
     */
     while(1)
     {
-        PM10 = 1000;
+       // PM10 = 1000;
         SSD1306_Fill(SSD1306_COLOR_BLACK); // clear screen
         SSD1306_GotoXY(4, 4);
         SSD1306_Puts("HLG Pollen Moni", &Font_7x10, SSD1306_COLOR_WHITE);
         SSD1306_GotoXY(2, 24);      
-        SSD1306_Puts("PM100: ", &Font_11x18, SSD1306_COLOR_WHITE);
+        SSD1306_Puts("CONC: ", &Font_11x18, SSD1306_COLOR_WHITE);
         SSD1306_GotoXY(2, 48);      
         SSD1306_Puts("T(0C): ", &Font_7x10, SSD1306_COLOR_WHITE);
 
