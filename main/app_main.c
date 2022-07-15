@@ -306,7 +306,8 @@ void oled_main_Task()
 
         //PM10
         SSD1306_GotoXY(80, 24); 
-        sprintf(PM10_c,"%d",PM10);     
+       // sprintf(PM10_c,"%d",PM10);   
+	sprintf(PM10_c,"%d",PM10-PM2_5); //modified by 2022-7-15
         SSD1306_Puts(PM10_c, &Font_11x18, SSD1306_COLOR_WHITE);
 
         //Temperature:
