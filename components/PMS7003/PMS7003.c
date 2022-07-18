@@ -118,11 +118,15 @@ void PMS7003_Read_Task(void* arg)
                // uiTemp=(uint32_t)(data_u1[11] << 24);
                // uiTemp = uiTemp|(uint32_t)(data_u1[12] << 16);
                // PM2_5  = uiTemp | (uint32_t)((data_u1[13]<<8) | data_u1[14]);
-		PM2_5  =  (uint32_t)((data_u1[9]<<8) | data_u1[10]);
+		    
+		//PM2_5  =  (uint32_t)((data_u1[9]<<8) | data_u1[10]);  //PM50
+		PM10  =  (uint32_t)((data_u1[9]<<8) | data_u1[10]);   //PM50
 
                // uiTemp = (uint32_t)(data_u1[15] << 24);
                // uiTemp = uiTemp | (uint32_t)(data_u1[16] << 16);
-                PM10 =  (uint32_t)((data_u1[11] << 8) | data_u1[12]);
+		    
+               // PM10 =  (uint32_t)((data_u1[11] << 8) | data_u1[12]);//TSP
+		PM2_5 =  (uint32_t)((data_u1[7] << 8) | data_u1[8]);  //PM10
                
                 //ESP_LOGI(TAG, "PM2_5=%d,PM10=%d", PM2_5,PM10);
                 if(PM2_5<=100)//优：0~100绿色
